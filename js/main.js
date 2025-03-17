@@ -1,36 +1,3 @@
-$(document).ready(function(){
-    $('.slickSlider').slick({
-        rtl: true,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        isArabic: true,
-        autoplay: true,
-        autoplaySpeed: 1000,
-
-        responsive: [
-            {
-            breakpoint: 1024,
-            settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-});
 
 
 
@@ -77,142 +44,12 @@ const showToast = (message, isError = false) => {
     return errors;
   };
   
-  // Create error message elements
-  const createErrorElement = (message) => {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    return errorDiv;
-  };
   
-  // Remove existing error messages
-  const removeErrorMessages = () => {
-    document.querySelectorAll('.error-message').forEach(el => el.remove());
-  };
+
   
-  // Display error messages
-  const showErrors = (errors) => {
-    removeErrorMessages();
-    Object.keys(errors).forEach(fieldName => {
-      const input = document.getElementById(fieldName);
-      const errorElement = createErrorElement(errors[fieldName]);
-      input.parentNode.appendChild(errorElement);
-      input.classList.add('border-red-500');
-      
-      // Show toast for first error
-      if (Object.keys(errors)[0] === fieldName) {
-        showToast(errors[fieldName], true);
-      }
-    });
-  };
   
-  // Remove error styling
-  const removeErrorStyles = () => {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => input.classList.remove('border-red-500'));
-  };
-  
-  // Google Sheets submission with loading state
-  const submitToGoogleSheets = async (formData) => {
-    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyvzfnSCyWZTwsI6GyWMOgeS3IwrK3TVyd2Oox2YpDyDrevC3EVI8E3AhBxxOKW5gan/exec';
-    
-    // Show sending toast
-    showToast('جاري إرسال البيانات...');
-    
-    try {
-      const response = await fetch(GOOGLE_SHEETS_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      // Show success toast
-      showToast('تم التسجيل بنجاح!');
-      return true;
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      // Show error toast
-      showToast('حدث خطأ في التسجيل. الرجاء المحاولة مرة أخرى.', true);
-      return false;
-    }
-  };
-  
-  // Form submission handler
-  document.getElementById('form-submit').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-      name: document.getElementById('name').value,
-      phone: document.getElementById('phone').value,
-      notes: document.getElementById('notes').value,
-      timestamp: new Date().toISOString()
-    };
-    
-    // Validate form
-    const errors = validateForm(formData);
-    
-    // Remove existing error styling
-    removeErrorStyles();
-    
-    // If there are errors, show them and return
-    if (Object.keys(errors).length > 0) {
-      showErrors(errors);
-      return;
-    }
-    
-    // Show loading state
-    const submitButton = e.target.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
-    submitButton.textContent = 'جاري التسجيل...';
-    submitButton.disabled = true;
-    
-    // Submit to Google Sheets
-    const success = await submitToGoogleSheets(formData);
-    
-    if (success) {
-      // Reset form
-      e.target.reset();
-    }
-    
-    // Reset button state
-    submitButton.textContent = originalButtonText;
-    submitButton.disabled = false;
-  });
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // *****************
-
-
-  // Scroll effect for navbar
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('nav-scroll');
-    } else {
-        navbar.classList.remove('nav-scroll');
-    }
-});
 
 
 
@@ -232,8 +69,73 @@ const showToast = (message, isError = false) => {
 
 
 
+// *****************
+
+
+
+  // Function to handle scroll event
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    
+    if (window.pageYOffset > 100) {
+        navbar.classList.add('navbar-scrolled');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
+    }
+});
 
 
 
 
- 
+
+// **************************************************************
+
+
+
+
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxHxVf2iHlQA9D2luKlzGgzMtQVq-emX5mTLmskPBmE6bpVU9H8N_z5fJ8EgGR3Dgyq/exec';
+
+// دالة لإرسال البيانات لـ Google Sheets
+const submitToGoogleSheets = async (formData) => {
+  try {
+    const response = await fetch(GOOGLE_SHEETS_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    
+    if (response.ok) {
+      alert('تم التسجيل بنجاح!');
+      return true;
+    } else {
+      alert('حدث خطأ في التسجيل. الرجاء المحاولة مرة أخرى.');
+      return false;
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('حدث خطأ في التسجيل. الرجاء المحاولة مرة أخرى.');
+    return false;
+  }
+};
+
+// التعامل مع إرسال الفورم
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  // اجمع بيانات الفورم
+  const formData = {
+    name: document.getElementById('form_name').value,
+    email: document.getElementById('form_email').value,
+    message: document.getElementById('form_message').value,
+  };
+  
+  // أرسل البيانات لـ Google Sheets
+  const success = await submitToGoogleSheets(formData);
+  
+  // لو الإرسال نجح، امسح الفورم
+  if (success) {
+    e.target.reset();
+  }
+});

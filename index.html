@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/all.min.css">
-    <link rel="stylesheet" href="./css/animate.css">
-    <link rel="stylesheet" href="./css/hover-min.css">
-    <link rel="stylesheet" href="./js/main.js">
-    <link rel="stylesheet" href="./js/wow.min.js">
-    <script src="./js/typed.umd.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/hover-min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Daniels</title>
 
@@ -587,7 +584,7 @@
     </div>
 </section>
 
-<section class="contact section-padding" id="Contact">
+<!-- <section class="contact section-padding" id="Contact">
     <div class="container">
         <div class="row">
             <div class="section-head col-12 text-center">
@@ -624,7 +621,7 @@
 
             <div class="col-md-8 offset-md-2">
                 <div class="contact-form">
-                    <form id="contact-form" method="post" action="contact.php">
+                    <form id="contact-form" method="post" action="https://script.google.com/macros/s/AKfycbw4lvNpsctPf78FxjM5QlmcxWJzj17u3k1xRN49Mdrwd7pcLjZUc817zXZNwqBG-kK2uA/exec">
                         <div class="messages"></div>
 
                         <div class="controls">
@@ -657,15 +654,89 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
    <!-- footer section -->
+ 
+     <section class="contact section-padding" id="Contact">
+       <div class="container">
+         <div class="row">
+           <div class="section-head col-12 text-center">
+             <h3 class="wow animate__animated animate__fadeInUp section-title">Contact Us.</h3>
+           </div>
+   
+           <div class="info text-center mb-5 col-12">
+             <div class="row">
+               <div class="col-md-4">
+                 <div class="item">
+                   <span class="icon"><i class="fa fa-map-marker-alt"></i></span>
+                   <h6> Address</h6>
+                   <p>6834 Hollywood Blvd - Los Angeles CA</p>
+                 </div>
+               </div>
+   
+               <div class="col-md-4">
+                 <div class="item">
+                   <span class="icon"><i class="fa fa-envelope"></i></span>
+                   <h6>Email</h6>
+                   <p>Support@website.com</p>
+                 </div>
+               </div>
+   
+               <div class="col-md-4">
+                 <div class="item">
+                   <span class="icon"><i class="fa fa-phone"></i></span>
+                   <h6>Phone</h6>
+                   <p>+20 010 2517 8918</p>
+                 </div>
+               </div>
+             </div>
+           </div>
+   
+           <div class="col-md-8 offset-md-2">
+             <div class="contact-form">
+               <form id="contact-form" method="post">
+                 <div class="messages"></div>
+   
+                 <div class="controls">
+                   <div class="row">
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <input id="form_name" type="text" name="name" class="form-control" placeholder="الاسم" required>
+                       </div>
+                     </div>
+   
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <input id="form_email" type="email" name="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="row">
+                     <div class="col-md-12">
+                       <div class="form-group">
+                         <textarea id="form_message" name="message" class="form-control" placeholder="الرسالة" rows="5" required></textarea>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="submit">
+                     <input type="submit" value="Submit" class="buton buton-bg disabled">
+                   </div>
+                 </div>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+   
+
    <footer class="p-4">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
           <div class="footer-desc text-center">
             <p class="text-white mb-1">
-              &copy; Copyright <span class="fw-bold">DevFolio</span>. All
+              &copy; Copyright <span class="fw-bold">Daniels</span>. All
               Rights Reserved
             </p>
             <p class="text-white mb-0">
@@ -693,11 +764,12 @@
         });
     </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
+        <script src="./js/typed.umd.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/wow.js"></script>
+    <!-- <script src="./js/main.js"></script> -->
+    <script src="/js/main.js" defer></script>
+    <script src="./js/wow.js"></script>
     <script>
         new WOW({
             live: true, 
@@ -706,7 +778,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Function to handle scroll event
     window.addEventListener('scroll', function() {
@@ -719,7 +790,6 @@
         }
     });
 </script>
-
 
 </body>
 </html>
